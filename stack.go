@@ -1,10 +1,5 @@
-// Copyright 2024 Yoann Duc. All rights reserved.
-// Use of this source code is governed by a MIT license that can be found in the
-// LICENSE file.
-
 // Package lfstack provides lock free stack of any value type. It uses atomic
 // functions to perform its synchronization.
-
 package lfstack
 
 import (
