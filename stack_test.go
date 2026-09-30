@@ -31,9 +31,8 @@ func TestStack(t *testing.T) {
 			checklen()
 		}
 
-		for j := len(items) - 1; j >= 0; j-- {
+		for _, i := range slices.Backward(items) {
 			e := stack.Pop()
-			i := items[j]
 			if e != i {
 				t.Fatalf("items did not match.\n\t     got: %v\n\texpected: %v", e, i)
 			}
@@ -69,7 +68,6 @@ func TestStack(t *testing.T) {
 		stack := &Stack[int]{}
 		src := []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
 		for _, v := range src {
-			v := v
 			go func() {
 				stack.Push(v)
 			}()
@@ -84,7 +82,7 @@ func TestStack(t *testing.T) {
 			wg.Wait()
 		}()
 
-		for i := 0; i < len(src); i++ {
+		for _ = range len(src) {
 			go func() {
 				for stack.Len() == 0 {
 				}
