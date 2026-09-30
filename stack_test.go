@@ -82,7 +82,7 @@ func TestStack(t *testing.T) {
 			wg.Wait()
 		}()
 
-		for _ = range len(src) {
+		for range len(src) {
 			go func() {
 				for stack.Len() == 0 {
 				}
