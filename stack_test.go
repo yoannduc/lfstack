@@ -14,7 +14,7 @@ type foobaz struct {
 
 func TestStack(t *testing.T) {
 	t.Run("Check basic functionnalities", func(t *testing.T) {
-		stack := &Stack[any]{}
+		stack := new(Stack[any])
 
 		var l uint64
 		checklen := func() {
@@ -42,22 +42,22 @@ func TestStack(t *testing.T) {
 	})
 
 	t.Run("Pop on empty does not error and return zero value for T", func(t *testing.T) {
-		s1 := &Stack[any]{}
+		s1 := new(Stack[any])
 		if s1.Pop() != nil {
 			t.Fatalf("items did not match.\n\t     got: %v\n\texpected: %v", s1.Pop(), nil)
 		}
 
-		s2 := &Stack[string]{}
+		s2 := new(Stack[string])
 		if s2.Pop() != "" {
 			t.Fatalf("items did not match.\n\t     got: %v\n\texpected: %v", s2.Pop(), "")
 		}
 
-		s3 := &Stack[int]{}
+		s3 := new(Stack[int])
 		if s3.Pop() != 0 {
 			t.Fatalf("items did not match.\n\t     got: %v\n\texpected: %v", s3.Pop(), 0)
 		}
 
-		s4 := &Stack[foobaz]{}
+		s4 := new(Stack[foobaz])
 		zero := foobaz{}
 		if s4.Pop() != zero {
 			t.Fatalf("items did not match.\n\t     got: %v\n\texpected: %v", s4.Pop(), zero)
@@ -65,7 +65,7 @@ func TestStack(t *testing.T) {
 	})
 
 	t.Run("Concurrency all items", func(t *testing.T) {
-		stack := &Stack[int]{}
+		stack := new(Stack[int])
 		src := []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
 		for _, v := range src {
 			go func() {
